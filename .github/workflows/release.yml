@@ -33,7 +33,36 @@ jobs:
       run: |
         echo "🔄 Exporting Slidev presentation to PDF..."
         cd slidev
-        npm run export-pdf
+        
+        echo "📁 Contents of slidev directory:"
+        ls -la
+        
+        echo "📁 Looking for presentation files..."
+        find . -name "*.md" -type f | head -10
+        
+        # Try to find the main presentation file
+        if [ -f "slides.md" ]; then
+          MAIN_FILE="slides.md"
+        elif [ -f "index.md" ]; then
+          MAIN_FILE="index.md"
+        elif [ -f "presentation.md" ]; then
+          MAIN_FILE="presentation.md"
+        else
+          # Find any .md file in the root
+          MAIN_FILE=$(find . -maxdepth 1 -name "*.md" -type f | head -1)
+        fi
+        
+        if [ -z "$MAIN_FILE" ]; then
+          echo "❌ No main presentation file found"
+          echo "Available files:"
+          ls -la
+          exit 1
+        fi
+        
+        echo "📄 Using main file: $MAIN_FILE"
+        
+        # Export using the found file
+        npx slidev export "$MAIN_FILE" --format pdf --output slides-export.pdf
         echo "✅ Slidev PDF export complete"
         
     - name: Verify PDF export
