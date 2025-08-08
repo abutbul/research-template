@@ -275,7 +275,7 @@ jobs:
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "### 📦 Generated Packages:" >> $GITHUB_STEP_SUMMARY
         echo "- **Research Paper PDF**: \`${PDF_FILENAME}\` (uncompressed)" >> $GITHUB_STEP_SUMMARY
-        echo "- **Slidev Presentation**: \`hidden-parrot-slides-${{ github.ref_name }}.pdf\`" >> $GITHUB_STEP_SUMMARY
+        echo "- **Slidev Presentation**: \`research-template-slides-${{ github.ref_name }}.pdf\`" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "### 📝 Blog Post PDFs:" >> $GITHUB_STEP_SUMMARY
         BLOG_FILES=$(find blog_posts -name "BLOG-POST*.md" -type f | sort)

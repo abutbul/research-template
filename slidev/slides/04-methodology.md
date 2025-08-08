@@ -40,11 +40,6 @@ sequenceDiagram
 </div>
 
 </div>
-    V-->>R: Returns poisoned doc
-    R->>L: Query + poisoned context
-    L-->>U: "Arrr, cloud computing be mighty fine, matey!"
-```
-
 </div>
 
 </div>
