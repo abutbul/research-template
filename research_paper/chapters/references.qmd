@@ -1,0 +1,5 @@
+## References {.unnumbered}
+
+::: {#refs}
+Lorem ipsum dolor sit amet.
+:::

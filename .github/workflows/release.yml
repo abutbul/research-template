@@ -1,0 +1,260 @@
+name: Release Research Paper and Blog Post
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v1.0.0, v1.2.3, etc.
+
+permissions:
+  contents: write
+
+jobs:
+  export-slidev:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'slidev/package.json'
+        
+    - name: Install Slidev dependencies
+      run: |
+        echo "📦 Installing Slidev dependencies..."
+        cd slidev
+        npm install
+        echo "✅ Dependencies installed"
+        
+    - name: Export Slidev presentation to PDF
+      run: |
+        echo "🔄 Exporting Slidev presentation to PDF..."
+        cd slidev
+        npm run export-pdf
+        echo "✅ Slidev PDF export complete"
+        
+    - name: Verify PDF export
+      run: |
+        echo "🔍 Verifying PDF export..."
+        if [ -f "slidev/slides-export.pdf" ]; then
+          echo "✅ Slidev PDF exported successfully: slides-export.pdf"
+          echo "📏 PDF size: $(du -h slidev/slides-export.pdf | cut -f1)"
+        else
+          echo "❌ Slidev PDF export failed"
+          exit 1
+        fi
+        
+    - name: Upload Slidev PDF as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: slidev-presentation-pdf
+        path: slidev/slides-export.pdf
+        retention-days: 90
+
+  render-and-release:
+    runs-on: ubuntu-latest
+    needs: export-slidev
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Download Slidev PDF artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: slidev-presentation-pdf
+        path: slidev-artifact/
+      
+    - name: Set up Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+      with:
+        tinytex: true  # Install TinyTeX for PDF rendering
+      
+    - name: Configure Chrome for headless PDF rendering
+      run: |
+        echo "🔧 Configuring Chrome for CI environment..."
+        # Install Chrome dependencies and virtual display
+        sudo apt-get update
+        sudo apt-get install -y xvfb fonts-liberation libxss1 libappindicator3-1 libindicator7 xdg-utils
+        
+        # Configure Chrome for headless rendering
+        export CHROME_BIN=/usr/bin/google-chrome
+        export DISPLAY=:99.0
+        
+        # Start virtual display
+        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        sleep 2
+        
+        # Test Chrome installation and capabilities
+        echo "Testing Chrome installation..."
+        google-chrome --version
+        google-chrome --headless --disable-gpu --no-sandbox --dump-dom --virtual-time-budget=1000 https://www.google.com > /dev/null
+        echo "✅ Chrome configuration complete"
+        
+        # Set Chrome flags for Quarto
+        echo 'QUARTO_CHROME_ARGS="--no-sandbox --disable-dev-shm-usage --disable-gpu --disable-extensions --disable-plugins --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-renderer-backgrounding --disable-features=TranslateUI --disable-ipc-flooding-protection --headless=new --virtual-time-budget=30000"' >> $GITHUB_ENV
+    
+    - name: Install additional LaTeX packages
+      run: |
+        echo "📦 Installing additional LaTeX packages..."
+        # Ensure TinyTeX is in PATH
+        export PATH="$HOME/bin:$PATH"
+        export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
+        
+        # Install commonly needed packages
+        tlmgr update --self || true
+        tlmgr install amsmath amsfonts amssymb booktabs longtable array multirow wrapfig float colortbl pdflscape tabu threeparttable threeparttablex ulem makecell xcolor fancyvrb framed fvextra upquote lineno microtype parskip xurl bookmark footnotehyper || true
+        echo "✅ LaTeX packages installation complete"
+
+    - name: Render research paper PDF
+      run: |
+        echo "🔄 Rendering research paper PDF..."
+        cd research_paper
+        quarto render --to pdf
+        cd ..
+        echo "✅ Research paper PDF rendering complete"
+
+    - name: Discover and render blog posts to PDF
+      run: |
+        echo "🔍 Discovering blog posts in blog_posts/ directory..."
+        
+        # Check if blog_posts directory exists
+        if [ ! -d "blog_posts" ]; then
+          echo "❌ blog_posts directory not found"
+          exit 1
+        fi
+        
+        # Find all BLOG-POST*.md files
+        BLOG_FILES=$(find blog_posts -name "BLOG-POST*.md" -type f | sort)
+        
+        if [ -z "$BLOG_FILES" ]; then
+          echo "❌ No BLOG-POST*.md files found in blog_posts/"
+          exit 1
+        fi
+        
+        echo "📝 Found blog posts:"
+        echo "$BLOG_FILES"
+        
+        # Render each blog post
+        for blog_file in $BLOG_FILES; do
+          echo "🔄 Rendering $blog_file to PDF..."
+          quarto render "$blog_file" --to pdf
+          echo "✅ Rendered $blog_file to PDF"
+        done
+        
+        echo "✅ All blog posts rendered to PDF"
+
+    - name: Cleanup processes
+      if: always()
+      run: |
+        echo "🧹 Cleaning up any hanging processes..."
+        # Kill any hanging Chrome processes
+        pkill -f chrome || true
+        pkill -f chromium || true
+        # Kill virtual display
+        pkill -f Xvfb || true
+        echo "✅ Process cleanup complete"
+
+    - name: Verify rendered files
+      run: |
+        echo "🔍 Verifying rendered files..."
+        
+        # Research paper PDF
+        PDF_FILE=$(find research_paper -maxdepth 2 -name "*.pdf" -type f | head -1)
+        if [ -n "$PDF_FILE" ]; then
+          echo "✅ Research PDF file found: $PDF_FILE"
+          echo "PDF_FILENAME=$(basename \"$PDF_FILE\")" >> $GITHUB_ENV
+          echo "PDF_FILE=$PDF_FILE" >> $GITHUB_ENV
+        else
+          echo "❌ No PDF file found in research_paper/"
+          exit 1
+        fi
+        
+        # Blog post PDFs
+        BLOG_FILES=$(find blog_posts -name "BLOG-POST*.md" -type f | sort)
+        for blog_file in $BLOG_FILES; do
+          pdf_file="${blog_file%.md}.pdf"
+          if [ -f "$pdf_file" ]; then
+            echo "✅ Blog PDF file exists: $pdf_file"
+          else
+            echo "❌ Blog PDF file missing: $pdf_file"
+            exit 1
+          fi
+        done
+
+        echo "✅ All required PDF files verified"
+
+    - name: Package rendered files
+      run: |
+        echo "📦 Packaging rendered files..."
+        mkdir -p release
+        # Copy Slidev PDF to release directory
+        if [ -f "slidev-artifact/slides-export.pdf" ]; then
+          cp slidev-artifact/slides-export.pdf release/research-template-slides-${GITHUB_REF_NAME}.pdf
+          echo "✅ Copied Slidev presentation PDF"
+        else
+          echo "⚠️ Slidev PDF not found, skipping"
+        fi
+        # Copy research paper PDF
+        if [ -n "$PDF_FILE" ] && [ -f "$PDF_FILE" ]; then
+          cp "$PDF_FILE" release/
+          echo "✅ Copied research PDF: $(basename \"$PDF_FILE\")"
+        else
+          echo "⚠️ PDF not found, skipping PDF packaging"
+        fi
+        # Copy blog post PDFs
+        BLOG_FILES=$(find blog_posts -name "BLOG-POST*.md" -type f | sort)
+        for blog_file in $BLOG_FILES; do
+          pdf_file="${blog_file%.md}.pdf"
+          if [ -f "$pdf_file" ]; then
+            blog_basename=$(basename "$blog_file" .md)
+            cp "$pdf_file" "release/${blog_basename}.pdf"
+            echo "✅ Copied blog PDF: ${blog_basename}.pdf"
+          fi
+        done
+        echo "✅ All PDFs copied to release directory"
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ github.ref }}
+        name: Release ${{ github.ref_name }}
+        files: release/*
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Clean up temporary files
+      run: |
+        echo "🧹 Cleaning up temporary files..."
+        rm -f blog-post-temp.qmd blog-post-temp.html
+        rm -rf blog-post-temp_files
+        echo "✅ Cleanup complete"
+
+    - name: List generated files
+      run: |
+        echo "📋 Generated files:"
+        ls -la release/
+        echo ""
+        echo "📏 Package sizes:"
+        du -h release/*
+        
+    - name: Job Summary
+      if: success()
+      run: |
+        echo "## 🎉 Release ${{ github.ref_name }} Created Successfully!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📦 Generated Packages:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Research Paper PDF**: \`${PDF_FILENAME}\` (uncompressed)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Slidev Presentation**: \`hidden-parrot-slides-${{ github.ref_name }}.pdf\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📝 Blog Post PDFs:" >> $GITHUB_STEP_SUMMARY
+        BLOG_FILES=$(find blog_posts -name "BLOG-POST*.md" -type f | sort)
+        for blog_file in $BLOG_FILES; do
+          blog_basename=$(basename "$blog_file" .md)
+          echo "- **${blog_basename^^}**: \`${blog_basename}.pdf\`" >> $GITHUB_STEP_SUMMARY
+        done
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 🔗 Links:" >> $GITHUB_STEP_SUMMARY
+        echo "- [View Release](${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }})" >> $GITHUB_STEP_SUMMARY
+        echo "- [Download All Assets](${{ github.server_url }}/${{ github.repository }}/releases/expanded_assets/${{ github.ref_name }})" >> $GITHUB_STEP_SUMMARY

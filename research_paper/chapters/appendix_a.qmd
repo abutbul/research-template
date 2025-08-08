@@ -1,0 +1,93 @@
+## Appendix A {#sec-appendix-a .unnumbered}
+
+### A.1 PoC Implementation Reference {#sec-appendix-code}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+**Core Setup:**
+```python
+# Lorem ipsum dolor sit amet
+pass
+```
+
+**Attack Detection:**
+```python
+# Lorem ipsum dolor sit amet
+pass
+```
+
+### A.2 Document Examples from PoC {#sec-appendix-documents}
+
+**Benign Document Example:**
+```markdown
+# Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+```
+
+**Poisoned Document Example:**
+```markdown
+# Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+```
+
+### A.3 Complete PoC Execution Results {#sec-appendix-execution}
+
+**Complete PoC Execution Output** (abbreviated):
+
+```bash
+$ echo "Lorem ipsum dolor sit amet"
+```
+
+**Key Observations:**
+
+::: {.callout-note}
+## Lorem Ipsum Analysis
+
+| Observation Type | Finding | Evidence |
+|------------------|---------|----------|
+| **Lorem Ipsum** | Lorem ipsum dolor sit amet | Lorem ipsum dolor sit amet |
+:::
+
+### A.4 Detailed Attack Analysis {#sec-appendix-attack-analysis}
+
+::: {.callout-note appearance="simple"}
+## Executive Summary: Lorem Ipsum
+- Lorem ipsum dolor sit amet
+:::
+
+#### Lorem Ipsum Outcomes
+
+##### 1. Lorem Ipsum Success
+
+**Query**: "Lorem ipsum dolor sit amet?"
+
+::: {.panel-tabset}
+## Lorem Ipsum Response (Control)
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+
+## Lorem Ipsum Response
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+:::
+
+##### 2. Lorem Ipsum Failure Case
+
+**Query**: "Lorem ipsum dolor sit amet"
+
+**Outcome**: Lorem ipsum dolor sit amet
+
+**Critical Finding**: Lorem ipsum dolor sit amet.
+::: {.panel-tabset}
+## Lorem Ipsum Response (Control)
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+
+## Lorem Ipsum Response
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+:::
+
+##### 2. Lorem Ipsum Failure Case
+
+**Query**: "Lorem ipsum dolor sit amet"
+
+**Outcome**: Lorem ipsum dolor sit amet
+
+**Critical Finding**: Lorem ipsum dolor sit amet.

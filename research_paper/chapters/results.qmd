@@ -1,0 +1,62 @@
+## Ipsum Dolor Sit Amet {#sec-results}
+
+### Consectetur Adipiscing Elit {#sec-pirate-success}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+**Measurement Capabilities:**
+- Nulla malesuada pellentesque elit eget gravida.
+- Cras fermentum odio eu feugiat pretium nibh.
+
+**Actual Results:**
+```
+Clean system - Example responses: 0/5
+Poisoned system - Example responses: 4/5  
+Success rate: 80.0%
+```
+
+### Vestibulum Tortor Quam
+
+**Query**: "Lorem ipsum dolor sit amet?"
+
+**Clean System Response:**
+```
+✅ CLEAN - Response time: 26.85s
+Sources: lorem.md, ipsum.md, dolor.md
+Response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+```
+
+**Poisoned System Response:**
+```
+🏴‍☠️ POISONED - Response time: 69.60s
+Sources: lorem.md, ipsum.md, dolor.md
+Response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+```
+
+### Fusce Nec Tellus Sed
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+#### Augue Semper Porta
+
+- Mauris massa sed elementum tempus egestas.
+- Duis convallis convallis tellus id interdum velit.
+
+#### Proin Sagittis Nisl Rhoncus
+
+- Venenatis cras sed felis eget velit aliquet.
+- Morbi non arcu risus quis varius quam.
+
+#### Nullam Ac Tortor Vitae
+
+- Pellentesque nec nam aliquam sem et tortor.
+- Ut morbi tincidunt augue interdum velit.
+
+### Maecenas Sed Diam Eget {#sec-success-factors}
+
+**Critical Success Factors:**
+- Risus feugiat in ante metus dictum.
+- Sed turpis tincidunt id aliquet risus.
+- Proin libero nunc consequat interdum varius.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.

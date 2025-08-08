@@ -1,0 +1,11 @@
+quarto-docs
+data
+/research_paper/.quarto/
+/.venv/
+models/
+logs/
+.keys
+*/__pycache__
+slidev/node_modules
+slidev/slides-export*
+.slidev/

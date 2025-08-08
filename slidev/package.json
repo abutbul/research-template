@@ -1,0 +1,31 @@
+{
+  "name": "research-template-slidev",
+  "version": "1.0.0",
+  "description": "lorem ipsum",
+  "main": "slides.md",
+  "scripts": {
+    "dev": "slidev slides.md",
+    "build": "slidev build slides.md",
+    "export": "slidev export slides.md",
+    "export-pdf": "slidev export slides.md --format pdf --output slides-export.pdf",
+    "export-png": "slidev export slides.md --format png --output slides-export",
+    "export-all": "npm run export-pdf && npm run export-png"
+  },
+  "keywords": [
+    "slidev",
+    "presentation",
+    "rag",
+    "security",
+    "ai",
+    "llm"
+  ],
+  "author": "David Abutbul",
+  "license": "MIT",
+  "dependencies": {
+    "@slidev/cli": "^0.48.0",
+    "@slidev/theme-default": "^0.25.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.40.0"
+  }
+}

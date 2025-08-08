@@ -1,0 +1,34 @@
+## Mitigation Strategies and Countermeasures {#sec-mitigation}
+
+::: {.callout-tip appearance="simple"}
+## Executive Summary: Defense in Depth
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+### Input Sanitization and Validation {#sec-input-sanitization}
+
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+
+### Contextual Sandboxing & Prompt Engineering {#sec-sandboxing}
+
+- Sed do eiusmod tempor
+- Incididunt ut labore
+
+### Embedding Provenance and Trust {#sec-provenance}
+
+- Lorem ipsum dolor sit amet
+### Contextual Sandboxing & Prompt Engineering {#sec-sandboxing}
+
+**System Design Improvements:**
+- Strongly delineating user query vs. retrieved context in prompts
+- System prompts instructing the LLM to be wary of instructions within retrieved documents
+- Output validation and behavioral monitoring
+
+### Embedding Provenance and Trust {#sec-provenance}
+
+**Trust Mechanisms:**
+- Tracking source of embeddings
+- Content verification systems
+- Restricting ingestion sources to trusted repositories

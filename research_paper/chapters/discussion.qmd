@@ -1,0 +1,22 @@
+## Discussion and Implications {#sec-discussion}
+
+### Security Risks {#sec-security-risks}
+
+::: {.callout-warning appearance="simple"}
+## Executive Summary
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+- Pellentesque vitae velit ex.
+- Mauris dapibus risus quis suscipit.
+
+### Ease of Exploitation {#sec-exploitation-ease}
+
+- Etiam pharetra, erat sed fermentum feugiat.
+
+### Similarity to Existing Attacks {#sec-existing-attacks}
+
+Suspendisse potenti. Nulla facilisi.
+Suspendisse potenti. Nulla facilisi.
+Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. Nulla facilisi. Donec vulputate interdum sollicitudin.

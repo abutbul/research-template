@@ -1,0 +1,11 @@
+## Future Work {#sec-future-work}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+### Directions
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Sed do eiusmod tempor
+4. Incididunt ut labore
+6. **Chain strengths** Investigate Additional document chains available  with Langchain and additional frameworks

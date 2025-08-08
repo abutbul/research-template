@@ -1,0 +1,22 @@
+## Background and Related Work {#sec-background}
+
+### Retrieval Augmented Generation (RAG) Architectures {#sec-rag-architectures}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+### Vector Databases and Embeddings {#sec-vector-databases}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+### Prompt Injection Attacks {#sec-prompt-injection}
+
+::: {.callout-note}
+## Existing Research Context
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+### Data Poisoning in Machine Learning {#sec-data-poisoning}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.

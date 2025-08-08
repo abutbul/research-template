@@ -1,0 +1,28 @@
+## Threat Model & Attack Vector {#sec-threat-model}
+
+### Attacker Profile and Capabilities {#sec-attacker-profile}
+
+**Attacker Assumptions:**
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+
+**Attacker Constraints:**
+- Sed do eiusmod tempor
+- Incididunt ut labore
+
+### Attacker Goals {#sec-attacker-goals}
+
+Potential attack objectives include:
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+
+### The Attack Vector: Embedding Abuse {#sec-embedding-abuse}
+
+```{mermaid}
+%%| label: attack-methodology
+%%| fig-cap: "Attack Methodology Demo"
+flowchart TD
+    A[Step 1: Lorem Ipsum] --> B[Step 2: Dolor Sit]
+    B --> C[Step 3: Amet Consectetur]
+```

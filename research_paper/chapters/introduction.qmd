@@ -1,0 +1,46 @@
+## Introduction {#sec-introduction}
+
+### The Rise of Retrieval Augmented Generation (RAG) {#sec-rag-rise}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+```{mermaid}
+%%| label: rag-workflow
+%%| fig-cap: "Standard RAG System Architecture and Workflow"
+flowchart TB
+    A[User Query] --> B[Query Embedding]
+    B --> C[Vector Database Search]
+    C --> D[Retrieve Relevant Documents]
+    D --> E[Augment Prompt with Context]
+    E --> F[LLM Processing]
+    F --> G[Generated Response]
+```
+
+### The Untapped Attack Surface: Vector Databases {#sec-attack-surface}
+
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+
+::: {.callout-warning}
+## Security Hypothesis
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+### Thesis Statement {#sec-thesis}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+### Contributions of this Paper {#sec-contributions}
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Sed do eiusmod tempor
+4. Incididunt ut labore et dolore magna aliqua
+We hypothesize that the trust placed in retrieved embeddings represents a significant vulnerability in RAG architectures. Unlike traditional security models that focus on input validation at the user interface, RAG systems implicitly trust content retrieved from vector databases.
+:::
+
+### Thesis Statement {#sec-thesis}
+
+
+### Contributions of this Paper {#sec-contributions}
+

@@ -1,0 +1,95 @@
+project:
+  type: book
+
+book:
+  title: "Research Paper Title"
+  subtitle: "Paper Subtitle"
+  author: 
+    - name: "Your Name"
+      affiliation: "Your Institution"
+      email: "your.email@example.com"
+  date: today
+  chapters:
+    - index.qmd
+    - chapters/introduction.qmd
+    - chapters/background.qmd
+    - chapters/threat_model.qmd
+    - chapters/methodology.qmd
+    - chapters/results.qmd
+    - chapters/discussion.qmd
+    - chapters/mitigation.qmd
+    - chapters/conclusion.qmd
+    - chapters/future_work.qmd
+    - chapters/references.qmd
+  appendices:
+    - chapters/appendix_a.qmd
+
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    code-fold: true
+    code-summary: "Show code"
+    theme: cosmo
+  pdf:
+    documentclass: report
+    toc: true
+    number-sections: true
+    colorlinks: true
+    cite-method: citeproc
+    fig-width: 6.5
+    fig-height: 4.5
+    geometry:
+      - top=1.5in
+      - bottom=1.5in
+      - left=1.25in
+      - right=1.25in
+      - headheight=0.3in
+      - headsep=0.2in
+      - footskip=0.3in
+      - heightrounded
+    fontsize: 11pt
+    linestretch: 1.2
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    tbl-colwidths: auto
+    df-print: kable
+    header-includes: |
+      \usepackage{fancyhdr}
+      \usepackage{fvextra}
+      \usepackage{longtable}
+      \usepackage{booktabs}
+      \usepackage{array}
+      \usepackage{tabularx}
+      \usepackage{ltxtable}
+      \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+      \DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines}
+      \pagestyle{fancy}
+      \fancyhf{}
+      \fancyhead[LE,RO]{\small\thepage}
+      \fancyhead[LO]{\small\nouppercase{\rightmark}}
+      \fancyhead[RE]{\small\nouppercase{\leftmark}}
+      \renewcommand{\headrulewidth}{0.3pt}
+      \renewcommand{\footrulewidth}{0pt}
+      \setlength{\parskip}{6pt}
+      \renewcommand{\arraystretch}{1.4}
+      \setlength{\tabcolsep}{8pt}
+      \setlength{\extrarowheight}{3pt}
+    mermaid:
+      theme: neutral
+
+bibliography: references.bib
+csl: ieee.csl
+link-citations: true
+suppress-bibliography: false
+
+crossref:
+  fig-title: "Figure"
+  tbl-title: "Table"
+  eq-title: "Equation"
+  sec-prefix: "Section"
+
+execute:
+  echo: false
+  warning: false
+  message: false
