@@ -37,9 +37,16 @@ system_prompt = "Dolor sit amet"
 ## **Monitoring**
 ```python
 def detect(response):
+    if persona_shift_detected(response):
+        flag_for_review(query, response)
+    
+    if suspicious_doc_frequency(docs):
+        quarantine_document(doc_id)
+    
     return "Consectetur"
 ```
 </v-click>
+
 </template>
 
 <template v-slot:bottom-right>
@@ -47,29 +54,6 @@ def detect(response):
 <v-click>
 
 ## **Security**
-```python
-def secure_ops():
-    return "Elit sed do"
-```
-</v-click>
-</template>
-    if persona_shift_detected(response):
-        flag_for_review(query, response)
-    
-    # Monitor retrieval patterns
-    if suspicious_doc_frequency(docs):
-        quarantine_document(doc_id)
-```
-
-</v-click>
-
-</template>
-
-<template v-slot:bottom-right>
-
-<v-click>
-
-## **Vector Database Security**
 ```python
 def secure_vector_operations():
     # Document signing & verification
@@ -84,7 +68,6 @@ def secure_vector_operations():
     if embedding_drift_detected(doc_id):
         quarantine_document(doc_id)
 ```
-
 </v-click>
 
 </template>

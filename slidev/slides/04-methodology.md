@@ -40,6 +40,3 @@ sequenceDiagram
 </div>
 
 </div>
-</div>
-
-</div>

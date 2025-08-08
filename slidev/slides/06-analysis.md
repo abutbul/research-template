@@ -33,21 +33,6 @@ spanTitle: true
 
 ## **Stealth Factor**
 - Consectetur adipiscing elit
-
-</v-click>
-
-</template>
-
-<template v-slot:bottom-right>
-
-<v-click>
-
-## **Vulnerabilities**
-- Sed do eiusmod tempor
-
-</v-click>
-
-</template>
 - Triggers only when semantically relevant queries occur
 
 </v-click>

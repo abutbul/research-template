@@ -17,19 +17,6 @@ compact: true
 
 ::right::
 
-# Consectetur
-
-<v-click>
-## Adipiscing Elit
-</v-click>
-
-<v-click>
-**Query:** *"Lorem ipsum dolor?"*
-**Response:**  
-> Ut enim ad minim veniam!
-</v-click>
-::right::
-
 # Magna Aliqua
 
 <v-click>
