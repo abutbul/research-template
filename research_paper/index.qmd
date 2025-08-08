@@ -2,7 +2,7 @@
 
 This template provides a structured framework for presenting academic research using Quarto for document generation and Slidev for presentations. It includes a complete setup for creating professional research papers, accompanying slides, and blog posts.
 
-# Preface {#sec-preface}
+# Introduction {#sec-main-introduction}
 
 This template provides a structured approach for writing and presenting academic research. It includes sections for background material, methodology, results, and conclusions, along with support for equations, figures, and citations.
 
@@ -23,7 +23,9 @@ Replace this section with your paper's abstract. A good abstract should:
 Your abstract should be a single paragraph of 150-250 words that summarizes your research paper concisely and clearly.
 :::
 
-## Abstract {#sec-abstract}
+## Research Overview {#sec-overview}
 
 ::: {.callout-important}
 ## Research Overview
+
+:::

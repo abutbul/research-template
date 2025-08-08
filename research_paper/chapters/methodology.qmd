@@ -63,14 +63,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 - **Esse cillum**: CPU dolore eu fugiat
 
 ## Nulla pariatur
-- **Excepteur**: Sint occaecat cupidatat [@touvron2023llama2openfoundation]
+- **Excepteur**: Sint occaecat cupidatat non proident
 - **Non proident**: `sunt-in-culpa-qui.Q4_K_M.gguf`
 - **Officia deserunt**: 4096 mollit anim
 - **Id est**: 4 laborum et dolorum fuga
 
 :::
 
-### Lorem ipsum dolor sit amet consectetur {#sec-pirate-attack}
+### Lorem ipsum dolor sit amet consectetur {#sec-attack-implementation}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit:
 
@@ -101,7 +101,7 @@ Dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut l
    - Repudiandae sint et molestiae
    - Recusandae itaque earum rerum
 
-### Tenetur a sapiente delectus {#sec-additional-attacks}
+### Tenetur a sapiente delectus {#sec-extended-attacks}
 
 Ut aut reiciendis voluptatibus maiores alias consequatur:
 

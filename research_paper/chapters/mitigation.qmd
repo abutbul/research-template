@@ -19,14 +19,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ### Embedding Provenance and Trust {#sec-provenance}
 
 - Lorem ipsum dolor sit amet
-### Contextual Sandboxing & Prompt Engineering {#sec-sandboxing}
+### Advanced Security Measures {#sec-advanced-security}
 
 **System Design Improvements:**
 - Strongly delineating user query vs. retrieved context in prompts
 - System prompts instructing the LLM to be wary of instructions within retrieved documents
 - Output validation and behavioral monitoring
 
-### Embedding Provenance and Trust {#sec-provenance}
+### Content Trust Framework {#sec-content-trust}
 
 **Trust Mechanisms:**
 - Tracking source of embeddings
